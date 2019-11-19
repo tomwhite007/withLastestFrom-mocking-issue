@@ -31,7 +31,7 @@ describe('DummyStateEffects', () => {
     effects = TestBed.get(DummyStateEffects);
   });
 
-  it('should trigger loaded action', () => {
+  it('should trigger SetListIsLong - using withLatestFrom', () => {
     testScheduler.run(({ hot, cold, expectObservable }) => {
       storeSpy.select.and.returnValue(cold('a', { a: ['test1', 'test2'] }));
 
@@ -45,7 +45,7 @@ describe('DummyStateEffects', () => {
     });
   });
 
-  it('should trigger loaded action', () => {
+  it('should trigger SetListIsLong - using switchMap', () => {
     testScheduler.run(({ hot, cold, expectObservable }) => {
       storeSpy.select.and.returnValue(cold('a', { a: ['test1', 'test2'] }));
 
