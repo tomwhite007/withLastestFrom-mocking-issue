@@ -8,7 +8,7 @@ To prove this I've created to NgRx effects that do the same job; one using `with
 
 I first noticed this when trying to create a demo using RxJs Marbles Testing library. I couldn't understand why my production effects could use Marbles and mocking inside each test, but my demo project could only be mocked on initialisation (rather than inside each test). After removing everything piece by piece, I found that the only difference in my Marbles test cases was `withLatestFrom`.
 
-I found that `withLatestFrom` mocks just fine using inside subscription tests works fine. See example: https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/testing/marble-testing.md#known-issues
+I found that `withLatestFrom` mocking inside subscription tests works fine. See example: https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/testing/marble-testing.md#known-issues
 
 ## Getting started
 
