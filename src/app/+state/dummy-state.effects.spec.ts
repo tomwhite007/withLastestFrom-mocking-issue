@@ -31,30 +31,30 @@ describe('DummyStateEffects', () => {
     effects = TestBed.get(DummyStateEffects);
   });
 
-  // it('should trigger loaded action', () => {
-  //   testScheduler.run(({ hot, cold, expectObservable }) => {
-  //     storeSpy.select.and.returnValue(cold('a', { a: [] }));
+  it('should trigger loaded action', () => {
+    testScheduler.run(({ hot, cold, expectObservable }) => {
+      storeSpy.select.and.returnValue(cold('a', { a: ['test1', 'test2'] }));
 
-  //     actions$ = hot('-a-|', {
-  //       a: new fromDummyStateActions.LoadList(['test1', 'test2']),
-  //     });
+      actions$ = hot('-a-|', {
+        a: new fromDummyStateActions.CheckList(),
+      });
 
-  //     expectObservable(effects.checkListLengthWithLatest$).toBe('-a-|', {
-  //       a: new fromDummyStateActions.ListIsLong(true),
-  //     });
-  //   });
-  // });
+      expectObservable(effects.checkListLengthWithLatest$).toBe('-a', {
+        a: new fromDummyStateActions.SetListIsLong(true),
+      });
+    });
+  });
 
   it('should trigger loaded action', () => {
     testScheduler.run(({ hot, cold, expectObservable }) => {
       storeSpy.select.and.returnValue(cold('a', { a: ['test1', 'test2'] }));
 
       actions$ = hot('-a-|', {
-        a: new fromDummyStateActions.LoadList(['test1', 'test2']),
+        a: new fromDummyStateActions.CheckList(),
       });
 
       expectObservable(effects.checkListLengthWithSwitchMap$).toBe('-a', {
-        a: new fromDummyStateActions.ListIsLong(true),
+        a: new fromDummyStateActions.SetListIsLong(true),
       });
     });
   });

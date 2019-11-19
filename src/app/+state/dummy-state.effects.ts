@@ -14,23 +14,23 @@ import { dummyStateQuery } from './dummy-state.selectors';
 @Injectable()
 export class DummyStateEffects {
   @Effect() checkListLengthWithLatest$: Observable<Action> = this.actions$.pipe(
-    ofType<DummyStateAction>(DummyStateActionTypes.LoadList),
+    ofType<DummyStateAction>(DummyStateActionTypes.CheckList),
     withLatestFrom(this.store.select(dummyStateQuery.getList)),
     map(([action, list]) => {
       console.log(list);
-      return new fromDummyStateActions.ListIsLong(list.length > 1);
+      return new fromDummyStateActions.SetListIsLong(list.length > 1);
     })
   );
 
   @Effect() checkListLengthWithSwitchMap$: Observable<
     Action
   > = this.actions$.pipe(
-    ofType<DummyStateAction>(DummyStateActionTypes.LoadList),
+    ofType<DummyStateAction>(DummyStateActionTypes.CheckList),
     switchMap(() =>
       this.store
         .select(dummyStateQuery.getList)
         .pipe(
-          map(list => new fromDummyStateActions.ListIsLong(list.length > 1))
+          map(list => new fromDummyStateActions.SetListIsLong(list.length > 1))
         )
     )
   );

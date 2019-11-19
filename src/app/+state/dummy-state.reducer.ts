@@ -21,14 +21,7 @@ export function reducer(
   action: DummyStateAction
 ): DummyStateState {
   switch (action.type) {
-    case DummyStateActionTypes.LoadList: {
-      state = {
-        ...state,
-        list: action.payload,
-      };
-      break;
-    }
-    case DummyStateActionTypes.ListIsLong: {
+    case DummyStateActionTypes.SetListIsLong: {
       state = {
         ...state,
         isLong: action.payload,
