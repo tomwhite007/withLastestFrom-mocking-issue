@@ -20,7 +20,7 @@ describe('DummyStateEffects', () => {
 
   beforeEach(() => {
     storeSpy = jasmine.createSpyObj('Store', ['select']);
-    /* This is the only point during initialisation where
+    /* NOTE: This is the only point during initialisation where
     we can mock values that successfully appear in withLatestFrom.
     e.g.:
     storeSpy.select.and.returnValue(of(['test1', 'test2']));
