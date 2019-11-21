@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { DummyStateEffects } from './dummy-state.effects';
@@ -20,6 +20,12 @@ describe('DummyStateEffects', () => {
 
   beforeEach(() => {
     storeSpy = jasmine.createSpyObj('Store', ['select']);
+    /* This is the only point during initialisation where
+    we can mock values that successfully appear in withLatestFrom.
+    e.g.:
+    storeSpy.select.and.returnValue(of(['test1', 'test2']));
+    But this is not good practice for testing multiple mock values.
+    */
 
     TestBed.configureTestingModule({
       providers: [
