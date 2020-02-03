@@ -1,6 +1,6 @@
 # withLatestFrom Unit Test mocking issue
 
-I created this project to demonstrate what I percieve as unexpected behaviour from the `RxJs` pipe operator, `withLatestFrom`, when its results are mocked within a test.
+I created this project to demonstrate unexpected behaviour from the `RxJs` pipe operator, `withLatestFrom`, when its results are mocked within a test.
 
 To prove this, I've created to NgRx effects that do the same job; one using `withLatestFrom` and one using `switchMap` (see file: [dummy-state.effects.spec.ts](https://github.com/tomwhite007/withLastestFrom-mocking-issue/blob/master/src/app/%2Bstate/dummy-state.effects.ts)). I have then created two identical unit tests that mock the method that returns the observable within them (see file: [dummy-state.effects.ts](https://github.com/tomwhite007/withLastestFrom-mocking-issue/blob/master/src/app/%2Bstate/dummy-state.effects.spec.ts)).
 
