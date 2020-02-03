@@ -37,7 +37,7 @@ describe('DummyStateEffects', () => {
     effects = TestBed.get(DummyStateEffects);
   });
 
-  it('should trigger SetListIsLong - using withLatestFrom', () => {
+  xit('should trigger SetListIsLong - using withLatestFrom', () => {
     testScheduler.run(({ hot, cold, expectObservable }) => {
       storeSpy.select.and.returnValue(cold('a', { a: ['test1', 'test2'] }));
 
@@ -46,6 +46,20 @@ describe('DummyStateEffects', () => {
       });
 
       expectObservable(effects.checkListLengthWithLatest$).toBe('-a', {
+        a: new fromDummyStateActions.SetListIsLong(true),
+      });
+    });
+  });
+
+  it('should trigger SetListIsLong - using withNextFrom', () => {
+    testScheduler.run(({ hot, cold, expectObservable }) => {
+      storeSpy.select.and.returnValue(cold('(a|)', { a: ['test1', 'test2'] }));
+
+      actions$ = hot('-a-|', {
+        a: new fromDummyStateActions.CheckList(),
+      });
+
+      expectObservable(effects.checkListLengthWithNext$).toBe('-a-|', {
         a: new fromDummyStateActions.SetListIsLong(true),
       });
     });
